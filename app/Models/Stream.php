@@ -13,4 +13,12 @@ class Stream extends Model
 
     protected $table = 'streams';
 
+    public function students() {
+        return $this->hasMany(Student::class);
+    }
+
+    public function disciplins() {
+        return $this->hasMany(Discipline::class);
+    }
+
 }

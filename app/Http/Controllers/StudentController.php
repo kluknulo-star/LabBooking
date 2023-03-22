@@ -11,4 +11,6 @@ class StudentController extends Controller
         $students = Student::all();
         dd($students);
     }
+
+
 }

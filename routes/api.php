@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DisciplineController;
+use App\Http\Controllers\StreamController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/streams', [StreamController::class, 'index']);
+
+Route::get('/streams/{stream}/students', [StreamController::class, 'getStudentsByStream']);
+Route::get('/streams/{stream}/disciplins', [StreamController::class, 'getDisciplinsByStream']);
