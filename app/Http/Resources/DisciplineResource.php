@@ -16,7 +16,7 @@ class DisciplineResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'discipline_name' => $this->discipline_name,
+            'title' => $this->title,
         ];
     }
 }

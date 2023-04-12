@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('student_id');
+            $table->unsignedInteger('student_code');
             $table->string('fio');
-            $table->foreignId('stream_id')->nullable()->index()->references('id')->on('streams');
+            $table->foreignId('group_id')->nullable()->index()->references('id')->on('groups');
             $table->timestamps();
         });
     }

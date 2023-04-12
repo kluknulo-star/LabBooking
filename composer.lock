@@ -873,7 +873,7 @@
                 "psr-7",
                 "request",
                 "response",
-                "stream",
+                "group",
                 "uri",
                 "url"
             ],

@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/streams', [StreamController::class, 'index']);
+Route::get('/groups', [StreamController::class, 'index']);
 
-Route::get('/streams/{stream}/students', [StreamController::class, 'getStudentsByStream']);
-Route::get('/streams/{stream}/disciplins', [StreamController::class, 'getDisciplinsByStream']);
+Route::get('/groups/{group}/students', [StreamController::class, 'getStudentsByStream']);
+Route::get('/groups/{group}/disciplins', [StreamController::class, 'getDisciplinsByStream']);

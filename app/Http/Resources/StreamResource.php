@@ -16,7 +16,7 @@ class StreamResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'stream_name' => $this->stream_name,
+            'title' => $this->title,
         ];
     }
 }

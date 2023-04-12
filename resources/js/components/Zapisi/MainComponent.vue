@@ -1,14 +1,14 @@
 <template>
-    
+
 <select v-model="currentStream" @change="changeCurrentStream()">
-    <template v-for="stream in streams">
-        <option :value="stream.id">
-            {{stream.stream_name}}
+    <template v-for="group in groups">
+        <option :value="group.id">
+            {{group.title}}
         </option>
     </template>
 </select>
- 
-<br>
+
+<br><br>
 
 <!-- зависит от группы currentStream -->
 <select v-model="currentStudent">
@@ -18,18 +18,17 @@
         </option>
     </template>
 </select>
- 
-<br>
 
+<br><br>
 <!-- зависит от группы currentStream -->
 <select v-model="currentDisciplins">
     <template v-for="discipline in disciplins">
         <option :value="discipline.id">
-            {{discipline.discipline_name}}
+            {{discipline.title}}
         </option>
     </template>
 </select>
- 
+
 <br>
 
 
@@ -43,7 +42,7 @@
 
     data() {
         return {
-            streams: null,
+            groups: null,
             students: null,
             disciplins: null,
             currentStream: null,
@@ -51,16 +50,16 @@
             currentDisciplins: null,
         }
     },
-    
+
     mounted() {
             this.getStreams()
-        },    
+        },
 
     methods: {
         getStreams() {
-            axios.get('/api/streams')
+            axios.get('/api/groups')
             .then(response => {
-                this.streams = response.data
+                this.groups = response.data
             })
         },
 
@@ -71,15 +70,16 @@
         },
 
         getStudents() {
-            axios.get(`/api/streams/${this.currentStream}/students`)
+            this.students = null
+            axios.get(`/api/groups/${this.currentStream}/students`)
             .then(response => {
-                
                 this.students = response.data
             })
         },
 
         getDisciplins() {
-            axios.get(`/api/streams/${this.currentStream}/disciplins`)
+            this.disciplins = null
+            axios.get(`/api/groups/${this.currentStream}/disciplins`)
             .then(response => {
                 console.log(response.data)
                 this.disciplins = response.data
