@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +20,7 @@ class RecordResource extends JsonResource
             'student' => $this->student->fio,
             'group' => $this->student->group->title,
             'discipline' => $this->discipline->title,
-            'day' => $this->day->day,
+            'day' => Carbon::parse($this->day->day)->format('d.m.y'),
             'time_lesson' => $this->timeLesson->title,
             'cabinet' => $this->cabinet->title,
             'lab' => $this->lab->title,
