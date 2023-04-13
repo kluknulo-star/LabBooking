@@ -33,7 +33,7 @@
     <div class="conteiner">
         <label>Дисциплина</label>
         <br>
-        <select class="box_selector" v-model="currentDiscipline">
+        <select class="box_selector" v-model="currentDiscipline" @change="getLabs()">
             <template v-for="discipline in disciplins">
                 <option :value="discipline.id">
                     {{ discipline.title }}
@@ -89,8 +89,8 @@
             </option>
         </select>
     </div>
-    
-    
+
+
 
     <template v-if="(abilityRecord.free_switches || abilityRecord.free_routers)">
         Свободно: <b>{{ abilityRecord.free_routers }}</b> роутер(а)(ов), <b>{{ abilityRecord.free_switches }}</b>
