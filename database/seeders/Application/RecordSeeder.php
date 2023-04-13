@@ -23,6 +23,7 @@ class RecordSeeder extends Seeder
                 'cabinet_id' => 1,
                 'teacher_id' => 1,
                 'lab_id' => 1,
+                'discipline_id' => 1,
             ],
             [
                 'student_id' => 3,
@@ -31,6 +32,7 @@ class RecordSeeder extends Seeder
                 'cabinet_id' => 1,
                 'teacher_id' => 1,
                 'lab_id' => 1,
+                'discipline_id' => 1,
             ],
             [
                 'student_id' => 1,
@@ -39,6 +41,7 @@ class RecordSeeder extends Seeder
                 'cabinet_id' => 1,
                 'teacher_id' => 1,
                 'lab_id' => 1,
+                'discipline_id' => 1,
             ],
 
         ];

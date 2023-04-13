@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('cabinet_id')->nullable()->index()->references('id')->on('cabinets');
             $table->foreignId('teacher_id')->nullable()->index()->references('id')->on('teachers');
             $table->foreignId('lab_id')->nullable()->index()->references('id')->on('labs');
+            $table->foreignId('discipline_id')->nullable()->index()->references('id')->on('disciplins');
             $table->timestamps();
         });
     }

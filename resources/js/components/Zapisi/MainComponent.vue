@@ -125,7 +125,7 @@
 
     <template v-if="!abilityRecord.error">
         <div>
-            <button class="boot">
+            <button class="boot" @click="sendRecord()">
                 Записаться
             </button>
         </div>
@@ -274,10 +274,15 @@ export default {
                 'cabinet_id': this.currentLabLesson.cabinet.id,
                 'teacher_id': this.currentLabLesson.teacher.id,
                 'lab_id': this.currentLab.id,
+                'discipline_id': this.currentDiscipline,
             }
-            if (abilityRecord.error === null){
-             axios.post(`/api/records/`, record)
-                 .then()
+            console.log(this.abilityRecord.error)
+            if (this.abilityRecord.error === null){
+                console.log(record)
+             axios.post(`/api/records`, record)
+                 .then(response => {
+                     console.log(response.data)
+                 })
             }
         }
     }

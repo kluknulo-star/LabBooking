@@ -3,6 +3,7 @@
 use App\Http\Controllers\DayController;
 use App\Http\Controllers\DisciplineController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\RecordController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,6 @@ Route::get('/disciplins/{discipline}/labs', [DisciplineController::class, 'getLa
 Route::get('/days', [DayController::class, 'index']);
 Route::get('/days/{day}/labLessons', [DayController::class, 'labLessons']);
 Route::get('/days/{day}/timeLessons/{timeLesson}/students/{student}/cabinets/{cabinet}', [DayController::class, 'checkFree']);
+
+Route::post('/records', [RecordController::class, 'store']);
+Route::get('/records', [RecordController::class, 'index']);
