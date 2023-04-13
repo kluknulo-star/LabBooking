@@ -250,14 +250,12 @@ export default {
 
         changeCurrentDayTime() {
             axios.get(`/api/days/${this.currentDay}/timeLessons/${this.currentLabLesson.time_lesson.id}/students/${this.currentStudent}/cabinets/${this.currentLabLesson.cabinet.id}`).then(response => {
-                // /days/{day}/timeLessons/{timeLesson}/students/{student}/cabinets/{cabinet}
                 console.log(response.data)
                 this.abilityRecord = response.data
             })
         },
 
         checkEquipment() {
-            this.changeCurrentDayTime()
             this.abilityRecord.error = null
             if ((this.abilityRecord.free_routers - this.currentLab.routers) < 0 ||
                 (this.abilityRecord.free_switches- this.currentLab.switches) < 0) {
