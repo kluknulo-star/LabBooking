@@ -12,7 +12,7 @@
     <br><br>
 
     <!-- зависит от группы currentGroup -->
-    <template v-if="currentGroup">
+    
         <label>Студент</label>
         <select v-model="currentStudent" @change="getDays()">
 
@@ -22,11 +22,11 @@
                 </option>
             </template>
         </select>
-    </template>
+
 
     <br><br>
     <!-- зависит от группы currentGroup -->
-    <template v-if="currentStudent">
+
         <label>Дисциплина</label>
         <select v-model="currentDiscipline">
             <template v-for="discipline in disciplins">
@@ -35,12 +35,12 @@
                 </option>
             </template>
         </select>
-    </template>
+
 
     <br><br>
 
     <!-- зависит от группы currentGroup -->
-    <template v-if="currentDiscipline">
+
         <label>Дата</label>
         <select v-model="currentDay" @change="changeCurrentDay()">
             <template v-for="day in days">
@@ -49,12 +49,12 @@
                 </option>
             </template>
         </select>
-    </template>
+
 
     <br><br>
 
     <!-- зависит от дня currentDay -->
-    <template v-if="currentDay">
+
         <label>Время</label>
         <select v-model="currentLabLesson" @change="changeCurrentDayTime()">
             <template v-for="labLesson in labLessons">
@@ -75,12 +75,40 @@
                 {{ currentLabLesson.teacher.fio }}
             </option>
         </select>
-    </template>
+
 
     <br><br>
 
+    <template v-if="abilityRecord.error">
+    {{ abilityRecord.error }}
+    </template>
+
+    <template v-if="abilityRecord.error">
+        <div>
+            <button disabled class="btn-record">
+                Записаться
+            </button>
+        </div>
+    </template>
+
+    <template v-if="!abilityRecord.error">
+        <div>
+            <button class="btn-record">
+                Записаться
+            </button>
+        </div>
+    </template>
+
+
+
+<div>
+    <a href="/records" class="href">
+        Записавшиеся
+    </a>
+</div>
 
 </template>
+
 
 <script>
 export default {
@@ -112,7 +140,9 @@ export default {
                 },
             },
             currentTeacher: null,
-            abilityRecord: null,
+            abilityRecord: {
+                'error': null,
+            },
         }
     },
 

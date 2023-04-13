@@ -8,6 +8,11 @@ const router = createRouter({
             component: () => import('./components/Zapisi/MainComponent.vue'),
             name: 'zapisi.index'
         },
+        {
+            path: '/records',
+            component: () => import('./components/Zapisi/Records.vue'),
+            name: 'records.index'
+        },
     ]
 })
 

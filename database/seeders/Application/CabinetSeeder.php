@@ -24,10 +24,10 @@ class CabinetSeeder extends Seeder
                 'switches' => 8,
             ],
             [
-                'title' => '345',
+                'title' => '348',
                 'num_seat' => 10,
-                'routers' => 6,
-                'switches' => 8,
+                'routers' => 4,
+                'switches' => 6,
             ],
         ];
 
