@@ -25,13 +25,18 @@
 #main{
     display: inline-block;
 }
+table{
+  text-align: center;
+}
 
-table,td,th{
-    border: 1px solid;
+td,th{
+    border: 0.5px solid;
+    padding: 10px 15px;
+
     
 }
 
-.boot,.a {
+.boot{
     -webkit-transform: translate3D(0, 0, 0);
     -webkit-backface-visibility: hidden;
     color: #2d2d2d;
@@ -76,7 +81,7 @@ table,td,th{
     left: -15px;
     margin-left: -1px;
     -webkit-transform: translate(0, 0);
-    -moz-transform: translate(0, 0);
+    -moz-transform: translate(0, 0); 
     -ms-transform: translate(0, 0);
     -o-transform: translate(0, 0);
     transform: translate(0, 0);
