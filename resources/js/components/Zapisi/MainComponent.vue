@@ -12,75 +12,89 @@
     <br><br>
 
     <!-- зависит от группы currentGroup -->
-    
-        <label>Студент</label>
-        <select v-model="currentStudent" @change="getDays()">
 
-            <template v-for="student in students">
-                <option :value="student.id">
-                    {{ student.fio }}
-                </option>
-            </template>
-        </select>
+    <label>Студент</label>
+    <select v-model="currentStudent" @change="getDays()">
+
+        <template v-for="student in students">
+            <option :value="student.id">
+                {{ student.fio }}
+            </option>
+        </template>
+    </select>
 
 
     <br><br>
     <!-- зависит от группы currentGroup -->
 
-        <label>Дисциплина</label>
-        <select v-model="currentDiscipline">
-            <template v-for="discipline in disciplins">
-                <option :value="discipline.id">
-                    {{ discipline.title }}
-                </option>
-            </template>
-        </select>
+    <label>Дисциплина</label>
+    <select v-model="currentDiscipline" @change="getLabs()">
+        <template v-for="discipline in disciplins">
+            <option :value="discipline.id">
+                {{ discipline.title }}
+            </option>
+        </template>
+    </select>
 
 
     <br><br>
 
     <!-- зависит от группы currentGroup -->
 
-        <label>Дата</label>
-        <select v-model="currentDay" @change="changeCurrentDay()">
-            <template v-for="day in days">
-                <option :value="day.id">
-                    {{ day.day }}
-                </option>
-            </template>
-        </select>
+    <label>Дата</label>
+    <select v-model="currentDay" @change="changeCurrentDay()">
+        <template v-for="day in days">
+            <option :value="day.id">
+                {{ day.day }}
+            </option>
+        </template>
+    </select>
 
 
     <br><br>
 
     <!-- зависит от дня currentDay -->
 
-        <label>Время</label>
-        <select v-model="currentLabLesson" @change="changeCurrentDayTime()">
-            <template v-for="labLesson in labLessons">
-                <option :value="labLesson">
-                    {{ labLesson.time_lesson.title }}
-                </option>
-            </template>
-        </select>
-        <label>Кабинет</label>
-        <select v-model="currentLabLesson.cabinet">
-            <option :value="currentLabLesson.cabinet">
-                {{ currentLabLesson.cabinet.title }}
+    <label>Время</label>
+    <select v-model="currentLabLesson" @change="changeCurrentDayTime()">
+        <template v-for="labLesson in labLessons">
+            <option :value="labLesson">
+                {{ labLesson.time_lesson.title }}
             </option>
-        </select>
-        <label>Преподаватель</label>
-        <select v-model="currentLabLesson.teacher">
-            <option :value="currentLabLesson.teacher">
-                {{ currentLabLesson.teacher.fio }}
-            </option>
-        </select>
+        </template>
+    </select>
+    <label>Кабинет</label>
+    <select v-model="currentLabLesson.cabinet">
+        <option :value="currentLabLesson.cabinet">
+            {{ currentLabLesson.cabinet.title }}
+        </option>
+    </select>
+    <label>Преподаватель</label>
+    <select v-model="currentLabLesson.teacher">
+        <option :value="currentLabLesson.teacher">
+            {{ currentLabLesson.teacher.fio }}
+        </option>
+    </select>
+    <br><br>
+    <template v-if="(abilityRecord.free_switches || abilityRecord.free_routers)">
+        Свободно: <b>{{ abilityRecord.free_routers }}</b> роутер(а)(ов), <b>{{ abilityRecord.free_switches }}</b>
+        коммутатор(а)(ов)
+        <br><br>
+    </template>
 
+    <label>Лаборатнорная</label>
+    <select v-model="currentLab" @change="checkEquipment()">
+        <template v-for="lab in labs">
+            <option :value="lab">
+                {{ lab.title }}
+            </option>
+        </template>
+    </select>
 
     <br><br>
 
     <template v-if="abilityRecord.error">
-    {{ abilityRecord.error }}
+        {{ abilityRecord.error }}
     </template>
 
     <template v-if="abilityRecord.error">
@@ -100,12 +114,11 @@
     </template>
 
 
-
-<div>
-    <a href="/records" class="href">
-        Записавшиеся
-    </a>
-</div>
+    <div>
+        <a href="/records" class="href">
+            Записавшиеся
+        </a>
+    </div>
 
 </template>
 
@@ -142,7 +155,18 @@ export default {
             currentTeacher: null,
             abilityRecord: {
                 'error': null,
+                'free_seats': null,
+                'free_routers': null,
+                'free_switches': null,
             },
+            labs: null,
+            currentLab: {
+                'id': null,
+                'title': null,
+                'routers': null,
+                'switches': null
+            },
+
         }
     },
 
@@ -160,12 +184,18 @@ export default {
         },
 
         changeCurrentGroup() {
-            console.log(this.currentGroup);
             this.getStudents();
             this.getDisciplins();
             this.currentStudent = null
             this.currentDiscipline = null
             this.currentDay = null
+        },
+
+        getLabs() {
+            axios.get(`/api/disciplins/${this.currentDiscipline}/labs`)
+                .then(response => {
+                    this.labs = response.data
+                })
         },
 
         getStudents() {
@@ -199,14 +229,36 @@ export default {
 
 
         changeCurrentDayTime() {
-            // console.log(`/api/days/${this.currentDay}/time_lesson/${this.currentLabLesson.time_lesson.id}/studnets/${this.currentStudent}/cabinets/${this.currentLabLesson.cabinet.id}`)
             axios.get(`/api/days/${this.currentDay}/timeLessons/${this.currentLabLesson.time_lesson.id}/students/${this.currentStudent}/cabinets/${this.currentLabLesson.cabinet.id}`).then(response => {
-                // /days/{day}/timeLessons/{timeLesson}/students/{student}/cabinets/{cabinet}
                 console.log(response.data)
                 this.abilityRecord = response.data
             })
         },
 
+        checkEquipment() {
+            this.changeCurrentDayTime()
+            this.abilityRecord.error = null
+            if ((this.abilityRecord.free_routers - this.currentLab.routers) < 0 ||
+                (this.abilityRecord.free_switches- this.currentLab.switches) < 0) {
+                this.abilityRecord.error = `Недостаточно железа! Для вашей лабы нужно ${this.currentLab.routers} роутер(а)(ов), ${this.currentLab.switches} коммутатор(а)(ов)`
+            }
+        },
+
+        sendRecord(){
+            this.checkEquipment()
+            let record = {
+                'student_id': this.currentStudent,
+                'day_id': this.currentDay,
+                'time_lesson_id': this.currentLabLesson.time_lesson.id,
+                'cabinet_id': this.currentLabLesson.cabinet.id,
+                'teacher_id': this.currentLabLesson.teacher.id,
+                'lab_id': this.currentLab.id,
+            }
+            if (abilityRecord.error === null){
+             axios.post(`/api/records/`, record)
+                 .then()
+            }
+        }
     }
 
 }

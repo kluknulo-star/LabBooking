@@ -26,6 +26,7 @@ Route::get('/groups', [GroupController::class, 'index']);
 
 Route::get('/groups/{group}/students', [GroupController::class, 'getStudentsByStream']);
 Route::get('/groups/{group}/disciplins', [GroupController::class, 'getDisciplinsByStream']);
+Route::get('/disciplins/{discipline}/labs', [DisciplineController::class, 'getLabs']);
 
 Route::get('/days', [DayController::class, 'index']);
 Route::get('/days/{day}/labLessons', [DayController::class, 'labLessons']);

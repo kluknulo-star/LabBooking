@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\DisciplineResource;
 use App\Http\Resources\GroupResource;
+use App\Http\Resources\LabResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Group;
+use App\Models\Lab;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -24,4 +27,6 @@ class GroupController extends Controller
         $disciplins = $group->disciplins;
         return response()->json(DisciplineResource::collection($disciplins));
     }
+
+
 }
