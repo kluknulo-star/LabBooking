@@ -1,13 +1,7 @@
 <template>
 
-<div>
-    <template >
-    <div>
-        <button class="boot">
-            Записаться
-        </button>
-    </div>
-    </template>
+<div style="float: right;">
+    <router-link :to="{name: 'zapisi.index'}" class="boot">Записаться</router-link>
 </div>
 
 <br>

@@ -36,7 +36,7 @@ class DayController extends Controller
             ->toArray();
         if (count($subjectInTimeLessonStudent) !== 0) {
             return response()->json([
-                'error' => '(Go study, pidor) Вы не можете записаться. В выбранное время у вас проходят занятие (' .
+                'error' => 'Вы не можете записаться. В выбранное время у вас проходят занятие (' .
                     $subjectInTimeLessonStudent[0]['title'] . ')',
             ]);
         }
@@ -62,7 +62,7 @@ class DayController extends Controller
 
         if (!($freeRouters || $freeSwitches)) {
             return response()->json([
-                'error' => '(No free place) Нет свободных мест',
+                'error' => 'Нет свободных мест',
             ]);
         }
 
@@ -78,7 +78,7 @@ class DayController extends Controller
 
         if (count($alreadyRecorded)) {
             return response()->json([
-                'error' => '(You are already recorded) Вы уже записаны',
+                'error' => 'Вы уже записаны',
             ]);
         }
 

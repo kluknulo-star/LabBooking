@@ -1,4 +1,8 @@
 <template>
+
+<div style="float: right;">
+    <router-link :to="{name: 'records.index'}" class="boot">Записавшиеся</router-link>
+</div>
     <div id="main">
 
     <div class="conteiner">
@@ -93,8 +97,8 @@
 
 
     <template v-if="(abilityRecord.free_switches || abilityRecord.free_routers)">
-        Свободно: <b>{{ abilityRecord.free_routers }}</b> роутер(а)(ов), <b>{{ abilityRecord.free_switches }}</b>
-        коммутатор(а)(ов)
+        Свободно: <b>{{ abilityRecord.free_routers }}</b> роутера(ов), <b>{{ abilityRecord.free_switches }}</b>
+        коммутатора(ов)
         <br><br>
     </template>
     <div class="conteiner">
@@ -115,6 +119,7 @@
     {{ abilityRecord.error }}
     </template>
 
+    
     <template v-if="abilityRecord.error">
         <div>
             <button disabled class="boot">
@@ -122,20 +127,19 @@
             </button>
         </div>
     </template>
-
+    
+    
     <template v-if="!abilityRecord.error">
         <div>
             <button class="boot" @click="sendRecord()">
                 Записаться
             </button>
         </div>
+    
     </template>
-
     <br>
 
-<div>
-    <router-link :to="{name: 'records.index'}" class="boot">Записавшиеся</router-link>
-</div>
+
 
 </template>
 
@@ -280,6 +284,7 @@ export default {
                      router.push({name: 'record.index'})
                  })
             }
+            
         }
     }
 
