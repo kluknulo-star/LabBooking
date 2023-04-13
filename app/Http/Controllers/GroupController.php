@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\DisciplineResource;
-use App\Http\Resources\StreamResource;
+use App\Http\Resources\GroupResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Group;
 use Illuminate\Http\Request;
 
-class StreamController extends Controller
+class GroupController extends Controller
 {
     public function index() {
         $groups = Group::all();
-        return StreamResource::collection($groups)->resolve();
+        return GroupResource::collection($groups)->resolve();
     }
 
     public function getStudentsByStream(Group $group){

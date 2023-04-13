@@ -3,12 +3,14 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Record;
 use Database\Seeders\Application\CabinetSeeder;
 use Database\Seeders\Application\DaySeeder;
 use Database\Seeders\Application\DisciplineSeeder;
 use Database\Seeders\Application\GroupSeeder;
 use Database\Seeders\Application\LabLessonSeeder;
 use Database\Seeders\Application\LabSeeder;
+use Database\Seeders\Application\RecordSeeder;
 use Database\Seeders\Application\ScheduleGroupSeeder;
 use Database\Seeders\Application\StudentSeeder;
 use Database\Seeders\Application\TeacherSeeder;
@@ -33,6 +35,7 @@ class DatabaseSeeder extends Seeder
             ScheduleGroupSeeder::class,
             LabSeeder::class,
             LabLessonSeeder::class,
+            RecordSeeder::class,
 
         ]);
     }

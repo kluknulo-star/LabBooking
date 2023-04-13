@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ScheduleGroup extends Model
 {
     use HasFactory;
+
+    public function day()
+    {
+
+    }
 }

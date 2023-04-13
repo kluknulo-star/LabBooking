@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\DisciplineController;
-use App\Http\Controllers\StreamController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*

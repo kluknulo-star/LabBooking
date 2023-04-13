@@ -19,6 +19,20 @@ class LabLessonSeeder extends Seeder
      */
     public function run(): void
     {
-        LabLesson::factory(10)->create();
+//        LabLesson::factory(10)->create();
+
+        $labLessons = [];
+        for ($i = 1; $i < 6; $i++) {
+            for ($j = 1; $j < 7; $j++) {
+                $labLesson = [
+                    'teacher_id' => rand(1,2),
+                    'day_id' => $i,
+                    'time_lesson_id' => $j,
+                    'cabinet_id' => rand(1,2),
+                ];
+                $labLessons[] = $labLesson;
+            }
+        }
+        LabLesson::insert($labLessons);
     }
 }

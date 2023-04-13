@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->nullable()->index()->references('id')->on('students');
             $table->foreignId('day_id')->nullable()->index()->references('id')->on('days');
-            $table->foreignId('lesson_id')->nullable()->index()->references('id')->on('time_lessons');
-            $table->foreignId('class_id')->nullable()->index()->references('id')->on('cabinets');
+            $table->foreignId('time_lesson_id')->nullable()->index()->references('id')->on('time_lessons');
+            $table->foreignId('cabinet_id')->nullable()->index()->references('id')->on('cabinets');
             $table->foreignId('teacher_id')->nullable()->index()->references('id')->on('teachers');
             $table->foreignId('lab_id')->nullable()->index()->references('id')->on('labs');
             $table->timestamps();
