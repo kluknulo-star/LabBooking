@@ -23,17 +23,10 @@ class DisciplineSeeder extends Seeder
                 'group_id' => 1,
             ],
             [
-                'title' => 'Истшная хня',
+                'title' => 'Комплексная безопасность информационных систем',
                 'group_id' => 2,
             ],
-            [
-                'title' => 'Дисциплина (Наши дети)',
-                'group_id' => 3,
-            ],
-            [
-                'title' => 'Дисциплина (Дети Истшников)',
-                'group_id' => 4,
-            ],
+
         ];
 
         Discipline::insert($disciplins);

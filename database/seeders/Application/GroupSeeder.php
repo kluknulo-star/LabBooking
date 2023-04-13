@@ -21,12 +21,7 @@ class GroupSeeder extends Seeder
             [
                 'title' => 'ИCT-19'
             ],
-            [
-                'title' => 'ИАС-20'
-            ],
-            [
-                'title' => 'ИСТ-20'
-            ],
+
         ]);
 
 

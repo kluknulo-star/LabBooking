@@ -1,20 +1,24 @@
 <template>
+    <div id="main"> 
 
+    <div class="conteiner">   
     <label>Группа</label>
-    <select v-model="currentGroup" @change="changeCurrentGroup()">
+    <br>
+    <select class="box_selector" v-model="currentGroup" @change="changeCurrentGroup()">
         <template v-for="group in groups">
             <option :value="group.id">
                 {{ group.title }}
             </option>
         </template>
     </select>
-
-    <br><br>
+    </div> 
+    
 
     <!-- зависит от группы currentGroup -->
-    
+    <div class="conteiner">   
         <label>Студент</label>
-        <select v-model="currentStudent" @change="getDays()">
+        <br>
+        <select class="box_selector" v-model="currentStudent" @change="getDays()">
 
             <template v-for="student in students">
                 <option :value="student.id">
@@ -22,70 +26,81 @@
                 </option>
             </template>
         </select>
+    </div>
 
-
-    <br><br>
+    
     <!-- зависит от группы currentGroup -->
-
+    <div class="conteiner"> 
         <label>Дисциплина</label>
-        <select v-model="currentDiscipline">
+        <br>
+        <select class="box_selector" v-model="currentDiscipline">
             <template v-for="discipline in disciplins">
                 <option :value="discipline.id">
                     {{ discipline.title }}
                 </option>
             </template>
         </select>
+    </div>
 
-
-    <br><br>
+    
 
     <!-- зависит от группы currentGroup -->
-
+    <div class="conteiner"> 
         <label>Дата</label>
-        <select v-model="currentDay" @change="changeCurrentDay()">
+        <br>
+        <select class="box_selector" v-model="currentDay" @change="changeCurrentDay()">
             <template v-for="day in days">
                 <option :value="day.id">
                     {{ day.day }}
                 </option>
             </template>
         </select>
+    </div>
 
-
-    <br><br>
+   
 
     <!-- зависит от дня currentDay -->
-
+    <div class="conteiner"> 
         <label>Время</label>
-        <select v-model="currentLabLesson" @change="changeCurrentDayTime()">
+        <br>
+        <select class="box_selector" v-model="currentLabLesson" @change="changeCurrentDayTime()">
             <template v-for="labLesson in labLessons">
                 <option :value="labLesson">
                     {{ labLesson.time_lesson.title }}
                 </option>
             </template>
         </select>
+    </div> 
+    <div class="conteiner"> 
         <label>Кабинет</label>
-        <select v-model="currentLabLesson.cabinet">
+        <br>
+        <select class="box_selector" v-model="currentLabLesson.cabinet">
             <option :value="currentLabLesson.cabinet">
                 {{ currentLabLesson.cabinet.title }}
             </option>
         </select>
+    </div>  
+    <div class="conteiner"> 
         <label>Преподаватель</label>
-        <select v-model="currentLabLesson.teacher">
+        <br>
+        <select class="box_selector" v-model="currentLabLesson.teacher">
             <option :value="currentLabLesson.teacher">
                 {{ currentLabLesson.teacher.fio }}
             </option>
         </select>
-
-
+    </div> 
+    </div>
     <br><br>
 
     <template v-if="abilityRecord.error">
     {{ abilityRecord.error }}
     </template>
 
+     
+
     <template v-if="abilityRecord.error">
         <div>
-            <button disabled class="btn-record">
+            <button disabled class="boot">
                 Записаться
             </button>
         </div>
@@ -93,7 +108,7 @@
 
     <template v-if="!abilityRecord.error">
         <div>
-            <button class="btn-record">
+            <button class="boot">
                 Записаться
             </button>
         </div>
@@ -102,10 +117,12 @@
 
 
 <div>
-    <a href="/records" class="href">
+    <button class="boot">
         Записавшиеся
-    </a>
+    </button>
 </div>
+
+
 
 </template>
 
