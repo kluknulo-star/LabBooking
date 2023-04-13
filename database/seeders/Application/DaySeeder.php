@@ -38,6 +38,26 @@ class DaySeeder extends Seeder
                 'day' => Carbon::today()->add(4,'day'),
                 'week' => 1,
             ],
+            [
+                'day' => Carbon::today()->add(8,'day'),
+                'week' => 2,
+            ],
+            [
+                'day' => Carbon::today()->add(9,'day'),
+                'week' => 2,
+            ],
+            [
+                'day' => Carbon::today()->add(10,'day'),
+                'week' => 2,
+            ],
+            [
+                'day' => Carbon::today()->add(11,'day'),
+                'week' => 2,
+            ],
+            [
+                'day' => Carbon::today()->add(12,'day'),
+                'week' => 2,
+            ],
         ];
 
         Day::insert($days);

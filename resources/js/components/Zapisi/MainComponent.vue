@@ -1,105 +1,104 @@
 <template>
+    <div id="main">
 
+    <div class="conteiner">
     <label>Группа</label>
-    <select v-model="currentGroup" @change="changeCurrentGroup()">
+    <br>
+    <select class="box_selector" v-model="currentGroup" @change="changeCurrentGroup()">
         <template v-for="group in groups">
             <option :value="group.id">
                 {{ group.title }}
             </option>
         </template>
     </select>
+    </div>
 
-    <br><br>
 
     <!-- зависит от группы currentGroup -->
+    <div class="conteiner">
+        <label>Студент</label>
+        <br>
+        <select class="box_selector" v-model="currentStudent" @change="getDays()">
 
-    <label>Студент</label>
-    <select v-model="currentStudent" @change="getDays()">
+            <template v-for="student in students">
+                <option :value="student.id">
+                    {{ student.fio }}
+                </option>
+            </template>
+        </select>
+    </div>
 
-        <template v-for="student in students">
-            <option :value="student.id">
-                {{ student.fio }}
-            </option>
-        </template>
-    </select>
-
-
-    <br><br>
-    <!-- зависит от группы currentGroup -->
-
-    <label>Дисциплина</label>
-    <select v-model="currentDiscipline" @change="getLabs()">
-        <template v-for="discipline in disciplins">
-            <option :value="discipline.id">
-                {{ discipline.title }}
-            </option>
-        </template>
-    </select>
-
-
-    <br><br>
 
     <!-- зависит от группы currentGroup -->
+    <div class="conteiner">
+        <label>Дисциплина</label>
+        <br>
+        <select class="box_selector" v-model="currentDiscipline">
+            <template v-for="discipline in disciplins">
+                <option :value="discipline.id">
+                    {{ discipline.title }}
+                </option>
+            </template>
+        </select>
+    </div>
 
-    <label>Дата</label>
-    <select v-model="currentDay" @change="changeCurrentDay()">
-        <template v-for="day in days">
-            <option :value="day.id">
-                {{ day.day }}
-            </option>
-        </template>
-    </select>
 
 
-    <br><br>
+    <!-- зависит от группы currentGroup -->
+    <div class="conteiner">
+        <label>Дата</label>
+        <br>
+        <select class="box_selector" v-model="currentDay" @change="changeCurrentDay()">
+            <template v-for="day in days">
+                <option :value="day.id">
+                    {{ day.day }}
+                </option>
+            </template>
+        </select>
+    </div>
+
+
 
     <!-- зависит от дня currentDay -->
-
-    <label>Время</label>
-    <select v-model="currentLabLesson" @change="changeCurrentDayTime()">
-        <template v-for="labLesson in labLessons">
-            <option :value="labLesson">
-                {{ labLesson.time_lesson.title }}
+    <div class="conteiner">
+        <label>Время</label>
+        <br>
+        <select class="box_selector" v-model="currentLabLesson" @change="changeCurrentDayTime()">
+            <template v-for="labLesson in labLessons">
+                <option :value="labLesson">
+                    {{ labLesson.time_lesson.title }}
+                </option>
+            </template>
+        </select>
+    </div>
+    <div class="conteiner">
+        <label>Кабинет</label>
+        <br>
+        <select class="box_selector" v-model="currentLabLesson.cabinet">
+            <option :value="currentLabLesson.cabinet">
+                {{ currentLabLesson.cabinet.title }}
             </option>
-        </template>
-    </select>
-    <label>Кабинет</label>
-    <select v-model="currentLabLesson.cabinet">
-        <option :value="currentLabLesson.cabinet">
-            {{ currentLabLesson.cabinet.title }}
-        </option>
-    </select>
-    <label>Преподаватель</label>
-    <select v-model="currentLabLesson.teacher">
-        <option :value="currentLabLesson.teacher">
-            {{ currentLabLesson.teacher.fio }}
-        </option>
-    </select>
-    <br><br>
-    <template v-if="(abilityRecord.free_switches || abilityRecord.free_routers)">
-        Свободно: <b>{{ abilityRecord.free_routers }}</b> роутер(а)(ов), <b>{{ abilityRecord.free_switches }}</b>
-        коммутатор(а)(ов)
-        <br><br>
-    </template>
-
-    <label>Лаборатнорная</label>
-    <select v-model="currentLab" @change="checkEquipment()">
-        <template v-for="lab in labs">
-            <option :value="lab">
-                {{ lab.title }}
+        </select>
+    </div>
+    <div class="conteiner">
+        <label>Преподаватель</label>
+        <br>
+        <select class="box_selector" v-model="currentLabLesson.teacher">
+            <option :value="currentLabLesson.teacher">
+                {{ currentLabLesson.teacher.fio }}
             </option>
-        </template>
-    </select>
-
+        </select>
+    </div>
+    </div>
     <br><br>
 
     <template v-if="abilityRecord.error">
-        {{ abilityRecord.error }}
+    {{ abilityRecord.error }}
     </template>
 
     <template v-if="abilityRecord.error">
         <div>
-            <button disabled class="btn-record">
+            <button disabled class="boot">
                 Записаться
             </button>
         </div>
@@ -107,18 +106,19 @@
 
     <template v-if="!abilityRecord.error">
         <div>
-            <button class="btn-record">
+            <button class="boot">
                 Записаться
             </button>
         </div>
     </template>
 
 
-    <div>
-        <a href="/records" class="href">
-            Записавшиеся
-        </a>
-    </div>
+
+<div>
+    <button class="boot">
+        Записавшиеся
+    </button>
+</div>
 
 </template>
 
@@ -184,6 +184,7 @@ export default {
         },
 
         changeCurrentGroup() {
+            console.log(this.currentGroup);
             this.getStudents();
             this.getDisciplins();
             this.currentStudent = null
@@ -230,6 +231,7 @@ export default {
 
         changeCurrentDayTime() {
             axios.get(`/api/days/${this.currentDay}/timeLessons/${this.currentLabLesson.time_lesson.id}/students/${this.currentStudent}/cabinets/${this.currentLabLesson.cabinet.id}`).then(response => {
+                // /days/{day}/timeLessons/{timeLesson}/students/{student}/cabinets/{cabinet}
                 console.log(response.data)
                 this.abilityRecord = response.data
             })
