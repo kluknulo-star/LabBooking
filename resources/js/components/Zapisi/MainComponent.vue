@@ -89,8 +89,27 @@
             </option>
         </select>
     </div>
+    
+    
+
+    <template v-if="(abilityRecord.free_switches || abilityRecord.free_routers)">
+        Свободно: <b>{{ abilityRecord.free_routers }}</b> роутер(а)(ов), <b>{{ abilityRecord.free_switches }}</b>
+        коммутатор(а)(ов)
+        <br><br>
+    </template>
+    <div class="conteiner">
+    <label>Лаборатнорная</label>
+    <br>
+    <select class="box_selector" v-model="currentLab" @change="checkEquipment()">
+        <template v-for="lab in labs">
+            <option :value="lab">
+                {{ lab.title }}
+            </option>
+        </template>
+    </select>
     </div>
-    <br><br>
+</div>
+
 
     <template v-if="abilityRecord.error">
     {{ abilityRecord.error }}
