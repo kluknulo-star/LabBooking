@@ -21,7 +21,7 @@ class ScheduleGroupFactory extends Factory
             'title' => 'subject "' . fake()->text(15). '"',
             'group_id' => rand(1,4),
             'day_id' => rand(1,5),
-            'time_lesson_id' => rand(1,6),
+            'time_lesson_id' => rand(1,3),
         ];
     }
 

@@ -17,7 +17,7 @@ class RecordSeeder extends Seeder
     {
         $records = [
             [
-                'student_id' => 1,
+                'student_id' => 2,
                 'day_id' => 1,
                 'time_lesson_id' => 1,
                 'cabinet_id' => 1,
@@ -25,9 +25,17 @@ class RecordSeeder extends Seeder
                 'lab_id' => 1,
             ],
             [
-                'student_id' => 2,
+                'student_id' => 3,
                 'day_id' => 1,
                 'time_lesson_id' => 1,
+                'cabinet_id' => 1,
+                'teacher_id' => 1,
+                'lab_id' => 1,
+            ],
+            [
+                'student_id' => 1,
+                'day_id' => 1,
+                'time_lesson_id' => 4,
                 'cabinet_id' => 1,
                 'teacher_id' => 1,
                 'lab_id' => 1,

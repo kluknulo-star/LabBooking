@@ -15,6 +15,7 @@ class CabinetResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'title' => $this->title,
             'num_seat' => $this->num_seat,
             'routers' => $this->routers,

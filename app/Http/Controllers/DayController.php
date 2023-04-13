@@ -36,7 +36,8 @@ class DayController extends Controller
             ->toArray();
         if (count($subjectInTimeLessonStudent) !== 0) {
             return response()->json([
-                'error' => '(Go study, pidor) Вы не можете записаться. В выбранное время у вас проходят занятия',
+                'error' => '(Go study, pidor) Вы не можете записаться. В выбранное время у вас проходят занятие (' .
+                    $subjectInTimeLessonStudent[0]['title'] . ')',
             ]);
         }
 

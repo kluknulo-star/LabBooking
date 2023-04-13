@@ -107,10 +107,12 @@ export default {
                     'title': null
                 },
                 'cabinet': {
+                    'id': null,
                     'title': null,
                 },
             },
             currentTeacher: null,
+            abilityRecord: null,
         }
     },
 
@@ -167,11 +169,12 @@ export default {
 
 
         changeCurrentDayTime() {
-            console.log(`/api/days/${this.currentDay}/timeLessons/${this.currentLabLesson.time_lesson.id}/students/${this.currentStudent}`)
-            // axios.get(`/api/days/${this.currentDay}/time_lesson/${this.currentLabLesson.time_lesson.id}/studnets/${this.currentStudent}`).then(response => {
-                // console.log(response.data)
-                // this.days = response.data
-            // })
+            // console.log(`/api/days/${this.currentDay}/time_lesson/${this.currentLabLesson.time_lesson.id}/studnets/${this.currentStudent}/cabinets/${this.currentLabLesson.cabinet.id}`)
+            axios.get(`/api/days/${this.currentDay}/timeLessons/${this.currentLabLesson.time_lesson.id}/students/${this.currentStudent}/cabinets/${this.currentLabLesson.cabinet.id}`).then(response => {
+                // /days/{day}/timeLessons/{timeLesson}/students/{student}/cabinets/{cabinet}
+                console.log(response.data)
+                this.abilityRecord = response.data
+            })
         },
 
     }
