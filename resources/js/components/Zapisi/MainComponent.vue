@@ -114,7 +114,7 @@
     <template v-if="abilityRecord.error">
     {{ abilityRecord.error }}
     </template>
-       
+
     <template v-if="abilityRecord.error">
         <div>
             <button disabled class="boot">
@@ -134,18 +134,15 @@
     <br>
 
 <div>
-    <button class="boot">
-        Записавшиеся
-    </button>
+    <router-link :to="{name: 'records.index'}" class="boot">Записавшиеся</router-link>
 </div>
 
 </template>
 
 
 <script>
+import router from "../../router";
 export default {
-
-
     data() {
         return {
             groups: null,
@@ -280,6 +277,7 @@ export default {
              axios.post(`/api/records`, record)
                  .then(response => {
                      console.log(response.data)
+                     router.push({name: 'record.index'})
                  })
             }
         }
