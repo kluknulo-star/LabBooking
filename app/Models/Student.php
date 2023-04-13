@@ -12,4 +12,9 @@ class Student extends Model
     protected $guarded = false;
 
     protected $table = 'students';
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id', 'id');
+    }
 }

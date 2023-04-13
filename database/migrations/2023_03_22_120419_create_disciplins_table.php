@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('disciplins', function (Blueprint $table) {
             $table->id();
-            $table->string('discipline_name');
-            $table->foreignId('stream_id')->nullable()->index()->references('id')->on('streams');
+            $table->string('title');
+            $table->foreignId('group_id')->nullable()->index()->references('id')->on('groups');
             $table->timestamps();
         });
     }

@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedule_streams', function (Blueprint $table) {
+        Schema::create('schedule_groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('stream_id')->nullable()->index()->references('id')->on('streams');
+            $table->string('title');
+            $table->foreignId('group_id')->nullable()->index()->references('id')->on('groups');
             $table->foreignId('day_id')->nullable()->index()->references('id')->on('days');
-            $table->foreignId('lesson_id')->nullable()->index()->references('id')->on('lessons');
+            $table->foreignId('time_lesson_id')->nullable()->index()->references('id')->on('time_lessons');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schedule_streams');
+        Schema::dropIfExists('schedule_groups');
     }
 };

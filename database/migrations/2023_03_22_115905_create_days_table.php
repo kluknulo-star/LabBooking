@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('days', function (Blueprint $table) {
             $table->id();
-            $table->date('day');
+            $table->dateTime('day');
             $table->unsignedSmallInteger('week');
             $table->timestamps();
         });

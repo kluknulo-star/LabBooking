@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('labs', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->foreignId('discipline_id')->nullable()->index()->references('id')->on('disciplins');
-            $table->string('lab_name');
-            $table->unsignedSmallInteger('router');
-            $table->unsignedSmallInteger('switch');
+            $table->unsignedSmallInteger('routers');
+            $table->unsignedSmallInteger('switches');
             $table->timestamps();
         });
     }

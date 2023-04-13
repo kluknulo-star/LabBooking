@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StreamResource extends JsonResource
+class DayResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +17,8 @@ class StreamResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'stream_name' => $this->stream_name,
+            'day' => Carbon::parse($this->day)->format('d.m.y'),
+            'week' => $this->week,
         ];
     }
 }

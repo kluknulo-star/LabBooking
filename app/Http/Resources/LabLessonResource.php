@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DisciplineResource extends JsonResource
+class LabLessonResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,9 @@ class DisciplineResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'teacher' => TeacherResource::make($this->teacher)->resolve(),
+            'time_lesson' => TimeLessonResource::make($this->timeLesson)->resolve(),
+            'cabinet' => CabinetResource::make($this->cabinet)->resolve()
         ];
     }
 }

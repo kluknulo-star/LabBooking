@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('classes', function (Blueprint $table) {
+        Schema::create('time_lessons', function (Blueprint $table) {
             $table->id();
-            $table->unsignedSmallInteger('class_name');
-            $table->unsignedSmallInteger('num_seat');
-            $table->unsignedSmallInteger('router');
-            $table->unsignedSmallInteger('switch');
+            $table->string('title');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('classes');
+        Schema::dropIfExists('time_lessons');
     }
 };
