@@ -114,7 +114,7 @@
     <template v-if="abilityRecord.error">
     {{ abilityRecord.error }}
     </template>
-
+       
     <template v-if="abilityRecord.error">
         <div>
             <button disabled class="boot">
@@ -131,7 +131,7 @@
         </div>
     </template>
 
-
+    <br>
 
 <div>
     <button class="boot">

@@ -97,3 +97,7 @@ td,th{
     -o-transform: translate(115%, 0);
     transform: translate(115%, 0);
   }
+
+  .bt_line{
+    display: inline-block;
+  }

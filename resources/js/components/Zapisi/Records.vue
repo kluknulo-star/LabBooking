@@ -1,13 +1,13 @@
 <template>
 
 <div>
-    
+    <template >
     <div>
         <button class="boot">
             Записаться
         </button>
     </div>
-
+    </template>
 </div>
 
 <br>
@@ -27,19 +27,19 @@
         </tr>
     </thead>
     <tbody>
-       
+        <template v-for="record in records">
         <tr>
-            <td>1</td>
-            <td>Ибрагимов А.Ю.</td>
-            <td>ИАС-19</td>
-            <td>Комплексная безопасность информационных систем</td>
-            <td>12.04.22</td>
-            <td>VI (17:30-19:00)</td>
-            <td>345</td>
-            <td>Недостаточно железа! Для вашей лабы нужно 3 роутер(а)(ов), 3 коммутатор(а)(ов)</td>
-            <td>Жуковский В.Е.</td>
+            <td>{{ record.id }}</td>
+            <td>{{ record.student }}</td>
+            <td>{{ record.group }}</td>
+            <td>{{ record.discipline }}</td>
+            <td>{{ record.day }}</td>
+            <td>{{ record.time_lesson }}</td>
+            <td>{{ record.cabinet }}</td>
+            <td>{{ record.lab }}</td>
+            <td>{{ record.teacher }}</td>
         </tr>
-       
+        </template>
     </tbody>
 </table>
 
@@ -56,16 +56,33 @@ export default {
 
     data() {
         return {
-            
-        }
+            records: null,
+            record: {
+                'id': null,
+                'student': null,
+                'group': null,
+                'discipline': null,
+                'day': null,
+                'time_lesson': null,
+                'cabinet': null,
+                'lab': null,
+                'teacher': null,
+                },
+                
+            }
     },
 
     mounted() {
-        
+        this.getRecords()
     },
 
     methods: {
-        
+        getRecords() {
+            axios.get('api/records')
+            .then(response => {
+                    this.records = response.data
+                })
+        }
 
     }
 
