@@ -1,125 +1,122 @@
 <template>
 
-<div style="float: right;">
-    <router-link :to="{name: 'records.index'}" class="boot">Записавшиеся</router-link>
-</div>
+    <div style="float: right;">
+        <router-link :to="{name: 'records.index'}" class="boot">Записавшиеся</router-link>
+    </div>
     <div id="main">
 
-    <div class="conteiner">
-    <label>Группа</label>
-    <br>
-    <select class="box_selector" v-model="currentGroup" @change="changeCurrentGroup()">
-        <template v-for="group in groups">
-            <option :value="group.id">
-                {{ group.title }}
-            </option>
+        <div class="conteiner">
+            <label>Группа</label>
+            <br>
+            <select class="box_selector" v-model="currentGroup" @change="changeCurrentGroup()">
+                <template v-for="group in groups">
+                    <option :value="group.id">
+                        {{ group.title }}
+                    </option>
+                </template>
+            </select>
+        </div>
+
+
+        <!-- зависит от группы currentGroup -->
+        <div class="conteiner">
+            <label>Студент</label>
+            <br>
+            <select class="box_selector" v-model="currentStudent" @change="getDays()">
+
+                <template v-for="student in students">
+                    <option :value="student.id">
+                        {{ student.fio }}
+                    </option>
+                </template>
+            </select>
+        </div>
+
+
+        <!-- зависит от группы currentGroup -->
+        <div class="conteiner">
+            <label>Дисциплина</label>
+            <br>
+            <select class="box_selector" v-model="currentDiscipline" @change="getLabs()">
+                <template v-for="discipline in disciplins">
+                    <option :value="discipline.id">
+                        {{ discipline.title }}
+                    </option>
+                </template>
+            </select>
+        </div>
+
+
+        <!-- зависит от группы currentGroup -->
+        <div class="conteiner">
+            <label>Дата</label>
+            <br>
+            <select class="box_selector" v-model="currentDay" @change="changeCurrentDay()">
+                <template v-for="day in days">
+                    <option :value="day.id">
+                        {{ day.day }}
+                    </option>
+                </template>
+            </select>
+        </div>
+
+
+        <!-- зависит от дня currentDay -->
+        <div class="conteiner">
+            <label>Время</label>
+            <br>
+            <select class="box_selector" v-model="currentLabLesson" @change="changeCurrentDayTime()">
+                <template v-for="labLesson in labLessons">
+                    <option :value="labLesson">
+                        {{ labLesson.time_lesson.title }}
+                    </option>
+                </template>
+            </select>
+        </div>
+        <div class="conteiner">
+            <label>Кабинет</label>
+            <br>
+            <select class="box_selector" v-model="currentLabLesson.cabinet">
+                <option :value="currentLabLesson.cabinet">
+                    {{ currentLabLesson.cabinet.title }}
+                </option>
+            </select>
+        </div>
+        <div class="conteiner">
+            <label>Преподаватель</label>
+            <br>
+            <select class="box_selector" v-model="currentLabLesson.teacher">
+                <option :value="currentLabLesson.teacher">
+                    {{ currentLabLesson.teacher.fio }}
+                </option>
+            </select>
+        </div>
+
+
+        <template v-if="(abilityRecord.free_switches || abilityRecord.free_routers)">
+            Свободно: <b>{{ abilityRecord.free_routers }}</b> роутера(ов), <b>{{ abilityRecord.free_switches }}</b>
+            коммутатора(ов)
+            <br><br>
         </template>
-    </select>
+        <div class="conteiner">
+            <label>Лаборатнорная</label>
+            <br>
+            <select class="box_selector" v-model="currentLab" @change="checkEquipment()">
+                <template v-for="lab in labs">
+                    <option :value="lab">
+                        {{ lab.title }}
+                    </option>
+                </template>
+            </select>
+        </div>
     </div>
-
-
-    <!-- зависит от группы currentGroup -->
-    <div class="conteiner">
-        <label>Студент</label>
-        <br>
-        <select class="box_selector" v-model="currentStudent" @change="getDays()">
-
-            <template v-for="student in students">
-                <option :value="student.id">
-                    {{ student.fio }}
-                </option>
-            </template>
-        </select>
-    </div>
-
-
-    <!-- зависит от группы currentGroup -->
-    <div class="conteiner">
-        <label>Дисциплина</label>
-        <br>
-        <select class="box_selector" v-model="currentDiscipline" @change="getLabs()">
-            <template v-for="discipline in disciplins">
-                <option :value="discipline.id">
-                    {{ discipline.title }}
-                </option>
-            </template>
-        </select>
-    </div>
-
-
-
-    <!-- зависит от группы currentGroup -->
-    <div class="conteiner">
-        <label>Дата</label>
-        <br>
-        <select class="box_selector" v-model="currentDay" @change="changeCurrentDay()">
-            <template v-for="day in days">
-                <option :value="day.id">
-                    {{ day.day }}
-                </option>
-            </template>
-        </select>
-    </div>
-
-
-
-    <!-- зависит от дня currentDay -->
-    <div class="conteiner">
-        <label>Время</label>
-        <br>
-        <select class="box_selector" v-model="currentLabLesson" @change="changeCurrentDayTime()">
-            <template v-for="labLesson in labLessons">
-                <option :value="labLesson">
-                    {{ labLesson.time_lesson.title }}
-                </option>
-            </template>
-        </select>
-    </div>
-    <div class="conteiner">
-        <label>Кабинет</label>
-        <br>
-        <select class="box_selector" v-model="currentLabLesson.cabinet">
-            <option :value="currentLabLesson.cabinet">
-                {{ currentLabLesson.cabinet.title }}
-            </option>
-        </select>
-    </div>
-    <div class="conteiner">
-        <label>Преподаватель</label>
-        <br>
-        <select class="box_selector" v-model="currentLabLesson.teacher">
-            <option :value="currentLabLesson.teacher">
-                {{ currentLabLesson.teacher.fio }}
-            </option>
-        </select>
-    </div>
-
-
-
-    <template v-if="(abilityRecord.free_switches || abilityRecord.free_routers)">
-        Свободно: <b>{{ abilityRecord.free_routers }}</b> роутера(ов), <b>{{ abilityRecord.free_switches }}</b>
-        коммутатора(ов)
-        <br><br>
-    </template>
-    <div class="conteiner">
-    <label>Лаборатнорная</label>
     <br>
-    <select class="box_selector" v-model="currentLab" @change="checkEquipment()">
-        <template v-for="lab in labs">
-            <option :value="lab">
-                {{ lab.title }}
-            </option>
-        </template>
-    </select>
-    </div>
-</div>
-<br>
 
     <template v-if="abilityRecord.error">
-    {{ abilityRecord.error }}
+        {{ abilityRecord.error }}
     </template>
 
-    
+
     <template v-if="abilityRecord.error">
         <div>
             <button disabled class="boot">
@@ -127,25 +124,24 @@
             </button>
         </div>
     </template>
-    
-    
+
+
     <template v-if="!abilityRecord.error">
         <div>
             <button class="boot" @click="sendRecord()">
                 Записаться
             </button>
         </div>
-    
+
     </template>
     <br>
-
 
 
 </template>
 
 
 <script>
-import router from "../../router";
+
 export default {
     data() {
         return {
@@ -204,7 +200,6 @@ export default {
         },
 
         changeCurrentGroup() {
-            console.log(this.currentGroup);
             this.getStudents();
             this.getDisciplins();
             this.currentStudent = null
@@ -243,7 +238,6 @@ export default {
 
         changeCurrentDay() {
             axios.get(`/api/days/${this.currentDay}/labLessons`).then(response => {
-                console.log(response.data)
                 this.labLessons = response.data
             })
         },
@@ -251,20 +245,22 @@ export default {
 
         changeCurrentDayTime() {
             axios.get(`/api/days/${this.currentDay}/timeLessons/${this.currentLabLesson.time_lesson.id}/students/${this.currentStudent}/cabinets/${this.currentLabLesson.cabinet.id}`).then(response => {
-                console.log(response.data)
                 this.abilityRecord = response.data
             })
         },
 
         checkEquipment() {
-            this.abilityRecord.error = null
-            if ((this.abilityRecord.free_routers - this.currentLab.routers) < 0 ||
-                (this.abilityRecord.free_switches- this.currentLab.switches) < 0) {
-                this.abilityRecord.error = `Недостаточно железа! Для вашей лабы нужно ${this.currentLab.routers} роутер(а)(ов), ${this.currentLab.switches} коммутатор(а)(ов)`
+            this.changeCurrentDayTime()
+            if (this.abilityRecord.error === undefined) {
+                if ((this.abilityRecord.free_routers - this.currentLab.routers) < 0 ||
+                    (this.abilityRecord.free_switches - this.currentLab.switches) < 0) {
+                    this.abilityRecord.error = `Недостаточно железа! Для вашей лабы нужно ${this.currentLab.routers} роутер(а)(ов), ${this.currentLab.switches} коммутатор(а)(ов)`
+                }
             }
+
         },
 
-        sendRecord(){
+        sendRecord() {
             this.checkEquipment()
             let record = {
                 'student_id': this.currentStudent,
@@ -275,16 +271,16 @@ export default {
                 'lab_id': this.currentLab.id,
                 'discipline_id': this.currentDiscipline,
             }
-            console.log(this.abilityRecord.error)
-            if (this.abilityRecord.error === null){
+            console.log('send record' + record)
+            if (this.abilityRecord.error == null) {
                 console.log(record)
-             axios.post(`/api/records`, record)
-                 .then(response => {
-                     console.log(response.data)
-                     router.push({name: 'record.index'})
-                 })
+                axios.post(`/api/records`, record)
+                    .then(response => {
+                        console.log(response.data)
+                        this.$router.push({name: 'records.index'})
+                    })
             }
-            
+
         }
     }
 

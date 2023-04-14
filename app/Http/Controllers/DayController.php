@@ -56,9 +56,13 @@ class DayController extends Controller
             $busySwitches += $record->lab->switches;
         }
 
-        $freeSeat = $cabinet->num_seat - count($recordsOnThisDayTime->toArray());
+        $freeSeats = $cabinet->num_seat - count($recordsOnThisDayTime->toArray());
         $freeRouters = $cabinet->routers - $busyRouters;
         $freeSwitches = $cabinet->switches - $busySwitches;
+
+        $freeSeats = $freeSeats < 0 ? 0 : $freeSeats;
+        $freeRouters = $freeRouters < 0 ? 0 : $freeRouters;
+        $freeSwitches = $freeSwitches < 0 ? 0 : $freeSwitches;
 
         if (!($freeRouters || $freeSwitches)) {
             return response()->json([
@@ -82,8 +86,9 @@ class DayController extends Controller
             ]);
         }
 
+
         return response()->json([
-            'free_seats' => $freeSeat,
+            'free_seats' => $freeSeats,
             'free_routers' => $freeRouters,
             'free_switches' => $freeSwitches,
         ]);
