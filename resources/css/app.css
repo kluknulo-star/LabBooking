@@ -33,13 +33,15 @@ td,th{
     border: 0.5px solid;
     padding: 10px 15px;
 
-    
+
 }
 
 .boot{
     -webkit-transform: translate3D(0, 0, 0);
     -webkit-backface-visibility: hidden;
     color: #2d2d2d;
+    background: #f6f7f8;
+    border-radius: 8px;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 400;
@@ -81,7 +83,7 @@ td,th{
     left: -15px;
     margin-left: -1px;
     -webkit-transform: translate(0, 0);
-    -moz-transform: translate(0, 0); 
+    -moz-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
     -o-transform: translate(0, 0);
     transform: translate(0, 0);
@@ -98,6 +100,10 @@ td,th{
     transform: translate(115%, 0);
   }
 
+   .boot:hover{
+       background: #2d2d2d;
+       color: #f6f7f8;
+   }
   .bt_line{
     display: inline-block;
   }
