@@ -52,6 +52,7 @@ td,th{
     display:block;
     width: 180px;
     text-align:center;
+    transition: 0.4s;
   }
   .boot:after {
     padding: 0;
