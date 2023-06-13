@@ -5,6 +5,8 @@ LabBooking - сервис для записи на лабораторные ра
 
 ```composer install```
 
+```npm run build```
+
 ```cp .env.example .env```
 
 ```php artisan key:generate```
